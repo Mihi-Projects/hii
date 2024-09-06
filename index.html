@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/log.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+   
+    <header class="header">
+        <a href="#" class="logo"><img src="Images/log.png" alt="Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="index.html" class="active">Home</a>
+            <a href="About.html">About</a>
+            <a href="Services.html">services</a>
+            <a href="Doctors.html">Doctors</a>
+            <a href="Consulting & Resetvation.html">Reservation</a>
+            <a href="Pharmacy.html">Pharmacy</a>
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <div class="banner">
+      <video autoplay muted loop id="background-video">
+          <source src="Images/lv_0_20240906044733.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <section>
+        
+        <div class="para_01">
+            <h1>About Our Hospital</h1>
+            <p>At Vital Care Hospital, we are dedicated to providing exceptional medical services with compassion and expertise. Our state-of-the-art facility is designed to offer comprehensive care in a warm and welcoming environment. With a team of highly skilled professionals and cutting-edge technology, we ensure that every patient receives personalized attention and the highest quality of treatment. Our commitment to excellence extends beyond mere medical care; we strive to create a supportive and comfortable experience for both patients and their families.</p>
+        </div>
+
+        <div>
+            <ol class="rounded-list">
+                <li><a href="#">Cutting-edge Technology</a></li>
+                <li><a href="#">Personalized Care</a></li>
+                <li><a href="#">Vigilant Monitoring</a></li>
+                <li><a href="#">Progress Evaluation</a></li>
+                <li><a href="#">24/7 Expert Medical Staff</a></li>
+                <li><a href="#">Supportive Environment</a></li>
+            </ol>
+        </div>
+
+        <h1>Services</h1>
+        <div class="para_02">
+            <p>Vital Care Hospital offers a wide range of medical services tailored to meet the diverse needs of our community. From advanced diagnostic procedures to specialized surgical interventions, we are equipped to handle various health conditions with precision and care. Our services include emergency care, maternity and neonatal care, cardiology, orthopedics, and oncology, among others. Additionally, we provide outpatient services, wellness programs, and rehabilitation therapies to support our patients' holistic well-being. At Vital Care, we are dedicated to delivering comprehensive care to ensure a healthier tomorrow.</p>
+        </div>
+
+        <section>
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img src="Images/em.jpg" alt="Emergency Care">
+                        </div>
+                        <h3>Emergency Care</h3>
+                        <p>24/7 emergency services for urgent medical needs and critical situations.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img src="Images/ortho.jpg" alt="Orthopedics">
+                        </div>
+                        <h3>Orthopedics</h3>
+                        <p>Specialized treatment for bone and joint issues, including fractures and injuries.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <img src="Images/gy.jpg" alt="Gynecology">
+                        </div>
+                        <h3>Gynecology</h3>
+                        <p>Women’s health services, from routine exams to specialized surgeries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__links">
+                    <a href="Index.html" class="footer__link">Home</a>
+                    <a href="About.html" class="footer__link">About</a>
+                    <a href="Services.html" class="footer__link">Services</a>
+                    <a href="Doctors.html" class="footer__link">Doctors</a>
+                    <a href="Consulting & Reservation.html" class="footer__link">Reservation</a>
+                    <a href="Pharmacy.html" class="footer__link">Pharmacy</a>
+                </div>
+                <hr class="footer__divider">
+                <p class="footer__copyright">© 2024 Umair Suhood. All rights reserved.</p>
+            </div>
+        </footer>
+        
+        
+        <script>
+            
+            let menuIcon = document.querySelector('#menu-icon');
+            let navbar = document.querySelector('.navbar');
+
+            menuIcon.onclick = () => {
+                menuIcon.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+            };
+
+            
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('header nav a');
+
+            window.onscroll = () => {
+                sections.forEach(sec => {
+                    let top = window.scrollY;
+                    let offset = sec.offsetTop - 100;
+                    let height = sec.offsetHeight;
+                    let id = sec.getAttribute('id');
+
+                    if (top >= offset && top < offset + height) {
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                        });
+                    }
+                });
+            };
+        </script>
+    </section>
+</body>
+
+</html>
