@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Care</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/log.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    
+    <header class="header">
+        <a href="#" class="logo"><img src="Images/log.png" alt="Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">services</a>
+            <a href="doctor.html">Doctors</a>
+            <a href="reservation.html">Reservation</a>
+            <a href="pharmacy.html" class="active">Pharmacy</a>
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <div class="banner1" style="background-image: url(./Images/ssf.jpg);"></div>
+
+    <section class="pharmacy-form">
+        <h2>Order Medicine</h2>
+        <form id="pharmacy-form">
+            <fieldset>
+                <legend>Analgesics</legend>
+                <select class="medicine-select" name="analgesics" id="analgesics">
+                    <option value="" data-price="0">Select Analgesic</option>
+                    <option value="aspirin" data-price="10.00">Aspirin 100mg - 30 Tablets - $10.00</option>
+                    <option value="paracetamol" data-price="7.00">Paracetamol 500mg - 20 Tablets - $7.00</option>
+                    <option value="ibuprofen" data-price="9.00">Ibuprofen 200mg - 15 Tablets - $9.00</option>
+                </select>
+                <input type="number" class="quantity" id="analgesics-quantity" min="1" placeholder="Quantity">
+            </fieldset>
+
+            
+
+            <fieldset>
+                <legend>Antibiotics</legend>
+                <select class="medicine-select" name="antibiotics" id="antibiotics">
+                    <option value="" data-price="0">Select Antibiotic</option>
+                    <option value="amoxicillin" data-price="15.00">Amoxicillin 250mg - 20 Capsules - $15.00</option>
+                    <option value="doxycycline" data-price="20.00">Doxycycline 100mg - 30 Capsules - $20.00</option>
+                </select>
+                <input type="number" class="quantity" id="antibiotics-quantity" min="1" placeholder="Quantity">
+            </fieldset>
+
+            <fieldset>
+                <legend>Antidepressants</legend>
+                <select class="medicine-select" name="antidepressants" id="antidepressants">
+                    <option value="" data-price="0">Select Antidepressant</option>
+                    <option value="fluoxetine" data-price="25.00">Fluoxetine 20mg - 30 Capsules - $25.00</option>
+                    <option value="sertraline" data-price="30.00">Sertraline 50mg - 30 Tablets - $30.00</option>
+                </select>
+                <input type="number" class="quantity" id="antidepressants-quantity" min="1" placeholder="Quantity">
+            </fieldset>
+
+            <fieldset>
+                <legend>Antihistamines</legend>
+                <select class="medicine-select" name="antihistamines" id="antihistamines">
+                    <option value="" data-price="0">Select Antihistamine</option>
+                    <option value="cetirizine" data-price="12.00">Cetirizine 10mg - 30 Tablets - $12.00</option>
+                    <option value="loratadine" data-price="14.00">Loratadine 10mg - 30 Tablets - $14.00</option>
+                </select>
+                <input type="number" class="quantity" id="antihistamines-quantity" min="1" placeholder="Quantity">
+            </fieldset>
+
+            <fieldset>
+                <legend>Antihypertensives</legend>
+                <select class="medicine-select" name="antihypertensives" id="antihypertensives">
+                    <option value="" data-price="0">Select Antihypertensive</option>
+                    <option value="lisinopril" data-price="18.00">Lisinopril 10mg - 30 Tablets - $18.00</option>
+                    <option value="amlodipine" data-price="22.00">Amlodipine 5mg - 30 Tablets - $22.00</option>
+                </select>
+                <input type="number" class="quantity" id="antihypertensives-quantity" min="1" placeholder="Quantity">
+            </fieldset>
+
+            <button type="button" id="add-to-cart">Add to Cart</button>
+            <button type="button" id="save-favorites">Add to Favourites</button>
+            <button type="button" id="apply-favorites">Apply Favourites</button>
+        </form>
+
+        
+        <table id="cart-table">
+          <h2>Cart</h2>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td id="total-price">$0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <button id="buy-now">Buy Now</button>
+    </section>
+
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Order Confirmation</h2>
+            <p id="confirmation-message"></p>
+            <button id="modal-close-btn">Close</button>
+        </div>
+    </div>
+
+    <script>
+        const cartTableBody = document.querySelector('#cart-table tbody');
+        const totalPriceElement = document.getElementById('total-price');
+        const cart = [];
+
+        const updateCartTable = () => {
+            cartTableBody.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.name}</td><td>${item.quantity}</td><td>$${item.price.toFixed(2)}</td>`;
+                cartTableBody.appendChild(row);
+                total += item.price;
+            });
+
+            totalPriceElement.textContent = `$${total.toFixed(2)}`;
+        };
+
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            const medicineSelects = document.querySelectorAll('.medicine-select');
+            const quantities = document.querySelectorAll('.quantity');
+
+            medicineSelects.forEach((select, index) => {
+                const quantity = quantities[index].value;
+                if (select.value && quantity > 0) {
+                    const name = select.options[select.selectedIndex].text;
+                    const price = parseFloat(select.options[select.selectedIndex].getAttribute('data-price'));
+                    cart.push({ name, quantity, price: price * quantity });
+                }
+            });
+
+            updateCartTable();
+        });
+
+        document.getElementById('save-favorites').addEventListener('click', () => {
+            localStorage.setItem('favorites', JSON.stringify(cart));
+        });
+
+        document.getElementById('apply-favorites').addEventListener('click', () => {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            cart.length = 0; 
+            favorites.forEach(item => cart.push(item));
+            updateCartTable();
+        });
+
+        document.getElementById('buy-now').addEventListener('click', () => {
+            window.location.href = 'order-details.html';
+        });
+
+        document.querySelector('.modal-content .close').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == document.getElementById('modal')) {
+                document.getElementById('modal').style.display = 'none';
+            }
+        });
+
+        document.getElementById('modal-close-btn').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+        });
+    </script>
+
+<footer class="footer">
+  <div class="container">
+      <div class="footer__links">
+          <a href="Index.html" class="footer__link">Home</a>
+          <a href="About.html" class="footer__link">About</a>
+          <a href="Services.html" class="footer__link">Services</a>
+          <a href="Doctors.html" class="footer__link">Doctors</a>
+          <a href="Consulting & Resetvation.html" class="footer__link">Reservation</a>
+          <a href="Pharmacy.html" class="footer__link">Pharmacy</a>
+      </div>
+      <hr class="footer__divider">
+      <p class="footer__copyright">© 2024 Umair Suhood. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  
+  let menuIcon = document.querySelector('#menu-icon');
+  let navbar = document.querySelector('.navbar');
+
+  menuIcon.onclick = () => {
+      menuIcon.classList.toggle('bx-x');
+      navbar.classList.toggle('active');
+  };
+
+  
+  let sections = document.querySelectorAll('section');
+  let navLinks = document.querySelectorAll('header nav a');
+
+  window.onscroll = () => {
+      sections.forEach(sec => {
+          let top = window.scrollY;
+          let offset = sec.offsetTop - 100;
+          let height = sec.offsetHeight;
+          let id = sec.getAttribute('id');
+
+          if (top >= offset && top < offset + height) {
+              
+              navLinks.forEach(link => {
+                  link.classList.remove('active');
+                  document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+              });
+          }
+      });
+  };
+</script>
+</section>
+</body>
+
+</html>

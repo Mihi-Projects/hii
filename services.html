@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Care</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/log.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    
+    <header class="header">
+        <a href="#" class="logo"><img src="Images/log.png" alt="Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">services</a>
+            <a href="doctor.html">Doctors</a>
+            <a href="reservation.html">Reservation</a>
+            <a href="pharmacy.html">Pharmacy</a>
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <body>
+      <div class="tit">
+        <h1> OUR SERVICES</h1>
+        <p>
+          At Vital Care Hospital, we offer a wide range of medical services to meet the diverse needs of our patients. Our state-of-the-art facilities and experienced medical staff are dedicated to providing exceptional care across various specialties. From routine check-ups to complex surgeries, our hospital is equipped to handle all your healthcare needs with compassion and expertise.
+        </p>
+      </div> 
+    <section-s>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/cardi.jpg">
+            </div>
+            <h3>Cardiology</h3>
+            <p>
+              Expert care for heart conditions with advanced diagnostics and treatments.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/ortho.jpg">
+            </div>
+            <h3>Orthopedics</h3>
+            <p>
+              Specialized treatment for bone and joint issues, including fractures and injuries.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/neu.jpg">
+            </div>
+            <h3>Neurology</h3>
+            <p>
+              Comprehensive care for neurological disorders like stroke and epilepsy.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/on.jpg">
+            </div>
+            <h3>Oncology</h3>
+            <p>
+              Advanced cancer care with personalized treatment plans and support.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/gy.jpg">
+            </div>
+            <h3>Gynecology</h3>
+            <p>
+              Women’s health services, from routine exams to specialized surgeries.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <div class="img-wrapper">
+              <img src="Images/em.jpg">
+            </div>
+            <h3>Emergency Care</h3>
+            <p>
+              24/7 emergency services for urgent medical needs and critical situations.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </section-s>
+
+    <div class="registration-link">
+      <p>Ready to schedule an appointment or need more information? <a href="Consulting & Resetvation.html">Register as a patient</a> or contact us for assistance.</p>
+    </div>
+
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__links">
+                    <a href="Index.html" class="footer__link">Home</a>
+                    <a href="About.html" class="footer__link">About</a>
+                    <a href="Services.html" class="footer__link">Services</a>
+                    <a href="Doctors.html" class="footer__link">Doctors</a>
+                    <a href="Consulting & Reservation.html" class="footer__link">Reservation</a>
+                    <a href="Pharmacy.html" class="footer__link">Pharmacy</a>
+                </div>
+                <hr class="footer__divider">
+                <p class="footer__copyright">© 2024 Umair Suhood. All rights reserved.</p>
+            </div>
+        </footer>
+        
+        
+        <script>
+            
+            let menuIcon = document.querySelector('#menu-icon');
+            let navbar = document.querySelector('.navbar');
+
+            menuIcon.onclick = () => {
+                menuIcon.classList.toggle('bx-x');
+                navbar.classList.toggle('active');
+            };
+
+            
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('header nav a');
+
+            window.onscroll = () => {
+                sections.forEach(sec => {
+                    let top = window.scrollY;
+                    let offset = sec.offsetTop - 100;
+                    let height = sec.offsetHeight;
+                    let id = sec.getAttribute('id');
+
+                    if (top >= offset && top < offset + height) {
+                        
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                        });
+                    }
+                });
+            };
+        </script>
+    </section>
+</body>
+
+</html>

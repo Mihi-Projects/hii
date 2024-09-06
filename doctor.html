@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Care</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/log.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    
+    <header class="header">
+        <a href="#" class="logo"><img src="Images/log.png" alt="Logo"></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">services</a>
+            <a href="doctor.html" class="active">Doctors</a>
+            <a href="reservation.html">Reservation</a>
+            <a href="pharmacy.html">Pharmacy</a>
+            <span class="active-nav"></span>
+        </nav>
+    </header>
+
+    <body>  
+      
+      <div class="doctors-intro">
+        <h2>Meet Our Doctors</h2>
+        <p>Our team of highly skilled doctors is dedicated to providing exceptional care and treatment. Each physician brings a wealth of experience and expertise to ensure the highest standards of medical care. Learn more about our specialists below.</p>
+      </div>
+  
+      <section class="doctors-grid">
+        <div class="doctor-item">
+          <img src="Images/doc1.jpg" alt="Dr. Smith">
+          <h3>Dr. Waluka Smith</h3>
+          <p>Cardiologist with over 15 years of experience in heart care and treatment.</p>
+        </div>
+        <div class="doctor-item">
+          <img src="Images/doc 2.jpg" alt="Dr. Jones">
+          <h3>Dr. Umair Suhood</h3>
+          <p>Orthopedic specialist focusing on joint and bone health.</p>
+        </div>
+        <div class="doctor-item">
+          <img src="Images/doc 3.jpg" alt="Dr. Taylor">
+          <h3>Dr. Niwedha Taylor</h3>
+          <p>Neurologist with expertise in treating neurological disorders.</p>
+        </div>
+        <div class="doctor-item">
+          <img src="Images/doc 4.jpg" alt="Dr. Brown">
+          <h3>Dr. Tashila Brown</h3>
+          <p>Oncologist specializing in comprehensive cancer care.</p>
+        </div>
+        <div class="doctor-item">
+          <img src="Images/doc 5.jpg" alt="Dr. White">
+          <h3>Dr. Emily Jones</h3>
+          <p>Gynecologist providing expert care in women's health.</p>
+        </div>
+        <div class="doctor-item">
+          <img src="Images/doc 6.jpg" alt="Dr. Green">
+          <h3>Dr. Shivaram Muhunthan</h3>
+          <p>Emergency medicine specialist handling critical care situations.</p>
+        </div>
+      </section>
+  
+         
+         <footer class="footer">
+          <div class="container">
+              <div class="footer__links">
+                  <a href="Index.html" class="footer__link">Home</a>
+                  <a href="About.html" class="footer__link">About</a>
+                  <a href="Services.html" class="footer__link">Services</a>
+                  <a href="Doctors.html" class="footer__link">Doctors</a>
+                  <a href="Consulting & Reservation.html" class="footer__link">Reservation</a>
+                  <a href="Pharmacy.html" class="footer__link">Pharmacy</a>
+              </div>
+              <hr class="footer__divider">
+              <p class="footer__copyright">© 2024 Umair Suhood. All rights reserved.</p>
+          </div>
+      </footer>
+      
+      
+      <script>
+          
+          let menuIcon = document.querySelector('#menu-icon');
+          let navbar = document.querySelector('.navbar');
+
+          menuIcon.onclick = () => {
+              menuIcon.classList.toggle('bx-x');
+              navbar.classList.toggle('active');
+          };
+
+          
+          let sections = document.querySelectorAll('section');
+          let navLinks = document.querySelectorAll('header nav a');
+
+          window.onscroll = () => {
+              sections.forEach(sec => {
+                  let top = window.scrollY;
+                  let offset = sec.offsetTop - 100;
+                  let height = sec.offsetHeight;
+                  let id = sec.getAttribute('id');
+
+                  if (top >= offset && top < offset + height) {
+                      
+                      navLinks.forEach(link => {
+                          link.classList.remove('active');
+                          document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                      });
+                  }
+              });
+          };
+      </script>
+  </section>
+</body>
+
+</html>
